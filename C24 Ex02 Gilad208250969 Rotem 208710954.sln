@@ -7,4 +7,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ex02_Othelo", "Ex02_Othelo\
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = De
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B59ED6A5-7CB2-4D0D-8261-D0FB0804E5BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B59ED6A5-7CB2-4D0D-8261-D0FB0804E5BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B59ED6A5-7CB2-4D0D-8261-D0FB0804E5BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B59ED6A5-7CB2-4D0D-8261-D0FB0804E5BE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
