@@ -41,7 +41,7 @@ namespace Ex02_Othelo
             Console.WriteLine("Please enter player name:");
             string enteredName = Console.ReadLine();
 
-            while (string.IsNullOrWhiteSpace(enteredName) || enteredName.Equals("Computer", StringComparison.OrdinalIgnoreCase)) ;
+            while (string.IsNullOrWhiteSpace(enteredName) || enteredName.Equals("Computer", StringComparison.OrdinalIgnoreCase)) 
             {
                 if (string.IsNullOrWhiteSpace(enteredName))
                 {
@@ -93,21 +93,21 @@ namespace Ex02_Othelo
             return chosenMode;
         }
 
-        public static string GetPlayerTurn(string i_currentPlayerName)
+        public static string GetPlayerTurn(string i_currentPlayerName, int i_boardDimension)
         {
             string boardEntry = "";
             do
             {
                 Console.WriteLine($"Current player: {i_currentPlayerName}");
-                Console.WriteLine("Please enter a board entry to palce your next coin (e.g., A1, B3):");
+                Console.WriteLine("Please enter a board entry to place your next coin (e.g., 'A1', 'B3') or enter 'Q' to quit:");
                 boardEntry = Console.ReadLine();
 
-                if (!isValidEntry(boardEntry))
+                if (!isValidEntry(boardEntry, i_boardDimension))
                 {
-                    Console.WriteLine("Invalid input!,Please enter a valid board position in the format LetterNumber (e.g., A1, B3).");
+                    Console.WriteLine("Invalid input!,Please enter a valid board position in the format LetterNumber (e.g., 'A1', 'B3').");
                 }
             }
-            while (!isValidEntry(boardEntry));
+            while (!isValidEntry(boardEntry, i_boardDimension));
             
             return boardEntry;
 
@@ -115,15 +115,20 @@ namespace Ex02_Othelo
         }
         
         // Check the that the given entry is in a valid format
-        private static bool isValidEntry(string i_boardEntry)
+        private static bool isValidEntry(string i_boardEntry, int i_boardDimension)
         {
             bool isValid = false;
+            
+            if (i_boardEntry == "Q")
+            {
+                isValid = true;
+            }
 
             if (i_boardEntry.Length == 2)
             {
                 char column = i_boardEntry[0];
                 char row = i_boardEntry[1];
-                isValid = (column >= 'A' && column <= 'H' && row >= '1' && row <= '8');
+                isValid = (column >= 'A' && column <= 'A' + (i_boardDimension - 1) && row >= '1' && row <= '1' + (i_boardDimension - 1));
             }
             
             return isValid;
