@@ -1,0 +1,9 @@
+\\Mac\Home\Desktop\School\CSharp\C24 Ex02 Gilad208250969 Rotem 208710954\Ex02_Othelo\bin\Debug\Ex02_Othelo.exe.config
+\\Mac\Home\Desktop\School\CSharp\C24 Ex02 Gilad208250969 Rotem 208710954\Ex02_Othelo\bin\Debug\Ex02_Othelo.exe
+\\Mac\Home\Desktop\School\CSharp\C24 Ex02 Gilad208250969 Rotem 208710954\Ex02_Othelo\bin\Debug\Ex02_Othelo.pdb
+\\Mac\Home\Desktop\School\CSharp\C24 Ex02 Gilad208250969 Rotem 208710954\Ex02_Othelo\bin\Debug\Ex02.ConsoleUtils.dll
+\\Mac\Home\Desktop\School\CSharp\C24 Ex02 Gilad208250969 Rotem 208710954\Ex02_Othelo\obj\Debug\Ex02_Othelo.csproj.AssemblyReference.cache
+\\Mac\Home\Desktop\School\CSharp\C24 Ex02 Gilad208250969 Rotem 208710954\Ex02_Othelo\obj\Debug\Ex02_Othelo.csproj.CoreCompileInputs.cache
+\\Mac\Home\Desktop\School\CSharp\C24 Ex02 Gilad208250969 Rotem 208710954\Ex02_Othelo\obj\Debug\Ex02_Oth.9EDB8B5F.Up2Date
+\\Mac\Home\Desktop\School\CSharp\C24 Ex02 Gilad208250969 Rotem 208710954\Ex02_Othelo\obj\Debug\Ex02_Othelo.exe
+\\Mac\Home\Desktop\School\CSharp\C24 Ex02 Gilad208250969 Rotem 208710954\Ex02_Othelo\obj\Debug\Ex02_Othelo.pdb
