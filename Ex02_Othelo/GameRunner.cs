@@ -43,19 +43,19 @@ namespace Ex02_Othelo
             //* init both players validMoves
             m_Player1.UpdateValidMoves(m_GameBoard);
             //printing for testing only
-            m_Player1.PrintValidMoves();
+           // m_Player1.PrintValidMoves();
             //*
             m_Player2.UpdateValidMoves(m_GameBoard);
             //printing for testing only
-            m_Player2.PrintValidMoves();
-
+           // m_Player2.PrintValidMoves();
+           
             //* changed the condition here   to prevent endless loop
             while (!isGameOver()) 
             {
                 // if the current player doesnt have valid moves we switch to the other player
                 m_CurrentPlayer.UpdateValidMoves(m_GameBoard);
                 //* printing for testing only
-                m_CurrentPlayer.PrintValidMoves();
+                //m_CurrentPlayer.PrintValidMoves();
                 //* chnaged the structure here and removd redundant if else block
                 if (!m_CurrentPlayer.HasValidMove())
                 {
@@ -86,14 +86,17 @@ namespace Ex02_Othelo
 
             if (i_currentPlayer.IsBot)
             {
+                Console.WriteLine($"Current player: {i_currentPlayer.Name}");
                 move = i_currentPlayer.GetAiMove();
+                //* Wait for the seconds before proceeding in order to see computer's turn on the screen
+                System.Threading.Thread.Sleep(2000);
             }
             else
             {
                 string playerMoveInput = "";
                 do
                 {
-                    playerMoveInput = Display.GetPlayerTurn(i_currentPlayer.Name, i_gameBoard.Dimension);
+                    playerMoveInput = Display.GetPlayerMove(i_currentPlayer.Name, i_gameBoard.Dimension);
 
                     if (playerMoveInput == "Q")
                     {
@@ -111,6 +114,7 @@ namespace Ex02_Othelo
                 }
                 while (!i_currentPlayer.LegalMoves.ContainsKey(move));
             }
+            
             // once we got a valid move we clear the console and preform the move
             Ex02.ConsoleUtils.Screen.Clear();
 

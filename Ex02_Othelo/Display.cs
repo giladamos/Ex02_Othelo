@@ -92,8 +92,8 @@ namespace Ex02_Othelo
 
             return chosenMode;
         }
-
-        public static string GetPlayerTurn(string i_currentPlayerName, int i_boardDimension)
+        //* changed method's name to be consistent with the program's naming
+        public static string GetPlayerMove(string i_currentPlayerName, int i_boardDimension)
         {
             string boardEntry = "";
             do
@@ -113,6 +113,8 @@ namespace Ex02_Othelo
 
 
         }
+
+         
         
         // Check the that the given entry is in a valid format
         private static bool isValidEntry(string i_boardEntry, int i_boardDimension)
