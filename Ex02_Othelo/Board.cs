@@ -15,7 +15,7 @@ namespace Ex02_Othelo
     {
         private int m_Dimension = 0;
         private eCoinColor[,] m_State = null;
-        private bool m_HasMoreSpace = true;
+        
 
         private static readonly (int, int)[] directions =
     {
