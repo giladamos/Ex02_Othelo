@@ -19,14 +19,14 @@ namespace Ex02_Othelo
 
         private static readonly (int, int)[] directions =
     {
-        (-1,0), // Up
-        ( 1,  0), // Down
+        (-1, 0), // Up
+        ( 1, 0), // Down
         ( 0, -1), // Left
-        ( 0,  1), // Right
+        ( 0, 1), // Right
         (-1, -1), // Up-Left
-        (-1,  1), // Up-Right
+        (-1, 1), // Up-Right
         ( 1, -1), // Down-Left
-        ( 1,  1)  // Down-Right
+        ( 1, 1)  // Down-Right
     };
 
         public Board(int i_BoardSize)
@@ -99,17 +99,19 @@ namespace Ex02_Othelo
             // define the current cell by going one cell in the given direction
             int currentRow = i_boardCell.i_row + i_rowDirection;
             int currentColumn = i_boardCell.i_column + i_columnDirection;
-            int flippedCount = 0;
+            int flippedCoinsCount = 0;
+            eCoinColor currentCoinColor = eCoinColor.Empty;
+            
 
             // while we still inside the board check if the current cell contains an opponent coin
             while (currentRow >= 0 && currentRow < this.Dimension && currentColumn >= 0 && currentColumn < this.Dimension)
             {
-                eCoinColor currentCoinColor = this.State[currentRow, currentColumn];
+                currentCoinColor = this.State[currentRow, currentColumn];
 
                 // If an empty cell encountered(contains an Empty coin) then no flip is possible in the given direction
                 if (currentCoinColor == eCoinColor.Empty)
                 {
-                    flippedCount = 0;
+                    flippedCoinsCount = 0;
                     break;
                 }
                 // If we encounter our own coin we stop iterating
@@ -118,12 +120,16 @@ namespace Ex02_Othelo
                     break;
                 }
 
-                flippedCount++;
+                flippedCoinsCount++;
                 currentRow += i_rowDirection;
                 currentColumn += i_columnDirection;
             }
 
-            return flippedCount;
+            // we are flipping the opponents coins only if t we trap them from both ends
+            flippedCoinsCount = currentCoinColor == i_player.CoinColor ? flippedCoinsCount : 0;
+            
+          
+            return flippedCoinsCount;
         }
 
         public void UpdateBoard(Player i_player, (int, int) i_boardCell)

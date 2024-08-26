@@ -19,7 +19,8 @@ namespace Ex02_Othelo
         private int m_Score;
         private bool m_IsBot;
         private eCoinColor m_CoinColor;
-        private Dictionary<(int, int), int> m_validMoves; // a dictionary of all 
+        //* Changed variable name to start with an uppercase letter after the "m_"
+        private Dictionary<(int, int), int> m_ValidMoves; // a dictionary of all 
 
 
         public Player(string i_name, eCoinColor i_color, bool i_isBot)
@@ -28,7 +29,7 @@ namespace Ex02_Othelo
             m_Score = 0;
             m_CoinColor = i_color;
             m_IsBot = i_isBot;
-            m_validMoves = new Dictionary<(int, int), int> ();
+            m_ValidMoves = new Dictionary<(int, int), int> ();
         }
 
         public string Name
@@ -67,7 +68,7 @@ namespace Ex02_Othelo
         {
             get
             {
-                return m_validMoves;
+                return m_ValidMoves;
             }
         }
 
@@ -84,7 +85,7 @@ namespace Ex02_Othelo
         // ai move, the computer choose the best available move in a greedy way
         public (int, int) GetAiMove()
         {
-            var greedyMove = this.m_validMoves.OrderByDescending(m => m.Value).First().Key;
+            var greedyMove = this.m_ValidMoves.OrderByDescending(m => m.Value).First().Key;
             return greedyMove;
         }
 
@@ -102,6 +103,16 @@ namespace Ex02_Othelo
                 }
             }
             return score;
+        }
+
+        // for testing
+        public void PrintValidMoves()
+        {
+            Console.WriteLine($"{m_Name}'s valid moves:");
+            foreach (var move in m_ValidMoves)
+            {
+                Console.WriteLine($"Move: ({move.Key.Item1}, {move.Key.Item2}) - Coins Flipped: {move.Value}");
+            }
         }
 
 
