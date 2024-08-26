@@ -12,7 +12,6 @@ namespace Ex02_Othelo
         public Player m_Player2 = null;
         public Player m_CurrentPlayer = null;
         public Board m_GameBoard = null;
-        //* Changed variable name to start with an uppercase letter after the "m_"
         private bool m_GameIsRunning = false;
 
 
@@ -25,8 +24,8 @@ namespace Ex02_Othelo
 
 
             Display.SetUserPrefernces(out player1Name, out player2Name, out boardSize, out isMultiplayer);
-            m_Player1 = new Player(player1Name, eCoinColor.Black, false);
-            m_Player2 = new Player(player2Name, eCoinColor.White, !isMultiplayer);
+            m_Player1 = new Player(player1Name, eCoinColors.Black, false);
+            m_Player2 = new Player(player2Name, eCoinColors.White, !isMultiplayer);
             m_CurrentPlayer = m_Player1;
             m_GameBoard = new Board(boardSize);
             m_GameIsRunning = true;
@@ -39,32 +38,27 @@ namespace Ex02_Othelo
         {
             // Start the game by printing the initial game board 
             Display.PrintCurrentBoard(m_GameBoard);
-            //* init both players validMoves
+            
             m_Player1.UpdateValidMoves(m_GameBoard);
-            //printing for testing only
-           // m_Player1.PrintValidMoves();
-            //*
+            
             m_Player2.UpdateValidMoves(m_GameBoard);
-            //printing for testing only
-           // m_Player2.PrintValidMoves();
-           
-            //* changed the condition here   to prevent endless loop
+            
             while (!isGameOver()) 
             {
                 // if the current player doesnt have valid moves we switch to the other player
                 m_CurrentPlayer.UpdateValidMoves(m_GameBoard);
-                //* printing for testing only
-                //m_CurrentPlayer.PrintValidMoves();
-                //* chnaged the structure here and removd redundant if else block
+                
                 if (!m_CurrentPlayer.HasValidMove())
                 {
                     Console.WriteLine($"{m_CurrentPlayer.Name} has no valid moves and must pass.");
                     switchPlayer();
+                    
                     continue;
                 }
                 else
                 {
                     processPlayerMove(m_CurrentPlayer, m_GameBoard);
+                    
                     switchPlayer();
                 }
             }
@@ -77,7 +71,6 @@ namespace Ex02_Othelo
         {
 
             // take the player turn from user and verify its ui logic:
-            //plauerTurn = currentPlayer.IsBot? AiMove: Display.getPlayerTurn
             // if current player is bot we do ai move
 
             (int, int) move;
@@ -87,7 +80,6 @@ namespace Ex02_Othelo
             {
                 Console.WriteLine($"Current player: {i_currentPlayer.Name}");
                 move = i_currentPlayer.GetAiMove();
-                //* Wait for the seconds before proceeding in order to see computer's turn on the screen
                 System.Threading.Thread.Sleep(2000);
             }
             else
@@ -118,8 +110,8 @@ namespace Ex02_Othelo
             Ex02.ConsoleUtils.Screen.Clear();
 
             i_gameBoard.UpdateBoard(i_currentPlayer, move);
+            
             // Print the updated board and 
-
             Display.PrintCurrentBoard(i_gameBoard);
         }
 
@@ -143,7 +135,7 @@ namespace Ex02_Othelo
         private bool isGameOver()
         {
             // Game is over if the board is full, or neither player has a valid move
-            bool boardIsFull = !m_GameBoard.State.Cast<eCoinColor>().Any(cell => cell == eCoinColor.Empty);
+            bool boardIsFull = !m_GameBoard.State.Cast<eCoinColors>().Any(cell => cell == eCoinColors.Empty);
             bool noValidMoves = !m_Player1.HasValidMove() && !m_Player2.HasValidMove();
 
             return boardIsFull || noValidMoves || !m_GameIsRunning; // The gameIsRunning flag will be false if "Q" was pressed

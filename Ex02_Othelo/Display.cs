@@ -92,7 +92,7 @@ namespace Ex02_Othelo
 
             return chosenMode;
         }
-        //* changed method's name to be consistent with the program's naming
+
         public static string GetPlayerMove(string i_currentPlayerName, int i_boardDimension)
         {
             string boardEntry = "";
@@ -139,7 +139,7 @@ namespace Ex02_Othelo
         // printing the board after the last play, or the inital board at first
         public static void PrintCurrentBoard(Board i_board)
         {
-            eCoinColor[,] boardState = i_board.State;
+            eCoinColors[,] boardState = i_board.State;
             int boardSize = i_board.Dimension;
 
             // Print column labels
@@ -167,11 +167,11 @@ namespace Ex02_Othelo
                     char currentCoin;
                     switch (boardState[i, j])
                     {
-                        case eCoinColor.White:
+                        case eCoinColors.White:
                             currentCoin = 'O';
                             break;
 
-                        case eCoinColor.Black:
+                        case eCoinColors.Black:
                             currentCoin = 'X';
                             break;
 

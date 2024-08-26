@@ -6,24 +6,17 @@ using System.Threading.Tasks;
 
 namespace Ex02_Othelo
 {
-    public enum eCoinColor
-    {
-        Black = -1,
-        White = 1,
-        Empty = 0
-    }
 
     public class Player
     {
         private string m_Name;
         private int m_Score;
         private bool m_IsBot;
-        private eCoinColor m_CoinColor;
-        //* Changed variable name to start with an uppercase letter after the "m_"
-        private Dictionary<(int, int), int> m_ValidMoves; // a dictionary of all 
+        private eCoinColors m_CoinColor;
+        private Dictionary<(int, int), int> m_ValidMoves;  
 
 
-        public Player(string i_name, eCoinColor i_color, bool i_isBot)
+        public Player(string i_name, eCoinColors i_color, bool i_isBot)
         {
             m_Name = i_name;
             m_Score = 0;
@@ -57,7 +50,7 @@ namespace Ex02_Othelo
             }
         }
         
-        public eCoinColor CoinColor
+        public eCoinColors CoinColor
         {
             get
             {
@@ -86,6 +79,7 @@ namespace Ex02_Othelo
         public (int, int) GetAiMove()
         {
             var greedyMove = this.m_ValidMoves.OrderByDescending(m => m.Value).First().Key;
+            
             return greedyMove;
         }
 
@@ -104,18 +98,5 @@ namespace Ex02_Othelo
             }
             return score;
         }
-
-        // for testing
-        public void PrintValidMoves()
-        {
-            Console.WriteLine($"{m_Name}'s valid moves:");
-            foreach (var move in m_ValidMoves)
-            {
-                Console.WriteLine($"Move: ({move.Key.Item1}, {move.Key.Item2}) - Coins Flipped: {move.Value}");
-            }
-        }
-
-
     }
-
 }

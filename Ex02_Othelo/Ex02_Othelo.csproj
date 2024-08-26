@@ -38,6 +38,7 @@
   <ItemGroup>
     <Compile Include="Board.cs" />
     <Compile Include="Display.cs" />
+    <Compile Include="eCoinColor.cs" />
     <Compile Include="GameRunner.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />

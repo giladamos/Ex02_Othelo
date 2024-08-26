@@ -14,10 +14,10 @@ namespace Ex02_Othelo
     public class Board
     {
         private int m_Dimension = 0;
-        private eCoinColor[,] m_State = null;
+        private eCoinColors[,] m_State = null;
         
 
-        private static readonly (int, int)[] directions =
+        private static readonly (int, int)[] sr_directions =
     {
         (-1, 0), // Up
         ( 1, 0), // Down
@@ -32,16 +32,16 @@ namespace Ex02_Othelo
         public Board(int i_BoardSize)
         {
             m_Dimension = i_BoardSize;
-            m_State = new eCoinColor[m_Dimension, m_Dimension];
+            m_State = new eCoinColors[m_Dimension, m_Dimension];
 
             // init board with middle tokens
-            m_State[(m_Dimension / 2) - 1, (m_Dimension / 2) - 1] = eCoinColor.White;
-            m_State[(m_Dimension / 2), (m_Dimension / 2)] = eCoinColor.White;
-            m_State[(m_Dimension / 2) - 1, (m_Dimension / 2)] = eCoinColor.Black;
-            m_State[(m_Dimension / 2), (m_Dimension / 2) - 1] = eCoinColor.Black;
+            m_State[(m_Dimension / 2) - 1, (m_Dimension / 2) - 1] = eCoinColors.White;
+            m_State[(m_Dimension / 2), (m_Dimension / 2)] = eCoinColors.White;
+            m_State[(m_Dimension / 2) - 1, (m_Dimension / 2)] = eCoinColors.Black;
+            m_State[(m_Dimension / 2), (m_Dimension / 2) - 1] = eCoinColors.Black;
         }
 
-        public eCoinColor[,] State
+        public eCoinColors[,] State
         {
             get
             {
@@ -58,7 +58,7 @@ namespace Ex02_Othelo
 
         }
 
-        internal void updatePlayerValidMoves(Player i_player)
+        public void updatePlayerValidMoves(Player i_player)
         {
             // Clear the playe current legal moves dictionary
             i_player.LegalMoves.Clear();
@@ -69,7 +69,7 @@ namespace Ex02_Othelo
                 for (int column = 0; column < this.Dimension; column++)
                 {
                     // If in the current cell there is no coin we check if we can place a coin there
-                    if (this.State[row, column] == eCoinColor.Empty)
+                    if (this.State[row, column] == eCoinColors.Empty)
                     {
                         int numOfFlippedCoins = getFlippedCoinsCount((row, column), i_player);
                         if (numOfFlippedCoins > 0)
@@ -86,7 +86,7 @@ namespace Ex02_Othelo
         {
             int totalFlipsCount = 0;
             // we iterate over every direction possible and sum the total number of coins to be flipped
-            foreach (var direction in directions)
+            foreach (var direction in sr_directions)
             {
                 totalFlipsCount += getFlippedCoinsCountInDirection(i_boardCell, i_player, direction.Item1, direction.Item2);
             }
@@ -94,13 +94,13 @@ namespace Ex02_Othelo
             return totalFlipsCount;
         }
 
-        public int getFlippedCoinsCountInDirection((int i_row, int i_column) i_boardCell, Player i_player, int i_rowDirection, int i_columnDirection)
+        private int getFlippedCoinsCountInDirection((int i_row, int i_column) i_boardCell, Player i_player, int i_rowDirection, int i_columnDirection)
         {
             // define the current cell by going one cell in the given direction
             int currentRow = i_boardCell.i_row + i_rowDirection;
             int currentColumn = i_boardCell.i_column + i_columnDirection;
             int flippedCoinsCount = 0;
-            eCoinColor currentCoinColor = eCoinColor.Empty;
+            eCoinColors currentCoinColor = eCoinColors.Empty;
             
 
             // while we still inside the board check if the current cell contains an opponent coin
@@ -109,7 +109,7 @@ namespace Ex02_Othelo
                 currentCoinColor = this.State[currentRow, currentColumn];
 
                 // If an empty cell encountered(contains an Empty coin) then no flip is possible in the given direction
-                if (currentCoinColor == eCoinColor.Empty)
+                if (currentCoinColor == eCoinColors.Empty)
                 {
                     flippedCoinsCount = 0;
                     break;
@@ -138,7 +138,7 @@ namespace Ex02_Othelo
             this.State[i_boardCell.Item1, i_boardCell.Item2] = i_player.CoinColor;
 
             // Flip the opponent's coins
-            foreach (var direction in directions)
+            foreach (var direction in sr_directions)
             {
                 FlipCoinsInDirection(i_player, i_boardCell, direction.Item1, direction.Item2);
             }
@@ -152,8 +152,8 @@ namespace Ex02_Othelo
 
             while (row >= 0 && row < this.Dimension && col >= 0 && col < this.Dimension)
             {
-                eCoinColor currentColor = this.State[row, col];
-                if (currentColor == eCoinColor.Empty)
+                eCoinColors currentColor = this.State[row, col];
+                if (currentColor == eCoinColors.Empty)
                 {
                     break; // No coins to flip in this direction
                 }
