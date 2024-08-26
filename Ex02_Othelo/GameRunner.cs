@@ -20,7 +20,6 @@ namespace Ex02_Othelo
         {
             string player1Name = "";
             string player2Name = "";
-            string gameMode = "";
             int boardSize = 0;
             bool isMultiplayer = false;
 
@@ -172,9 +171,6 @@ namespace Ex02_Othelo
             {
                 Console.WriteLine("It's a draw!");
             }
-
-            // Add ReadLine() Call to keep console open
-            Console.ReadLine();
         }
     }
 }
